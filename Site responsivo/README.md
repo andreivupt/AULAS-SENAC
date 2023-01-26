@@ -1,6 +1,4 @@
-# site-responsivo-com-html-css-e-javascript
-
-Olá pra você! Nessa repositório você vai enconntrar um site responsivo feito com html,css e javascript. Espero que gostes e também aproveita ✌
+# Site responsivo com HTML5, CSS e JAVASCRIPT
 
 # Preview
 ![image](img1.png)
