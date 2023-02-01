@@ -12,7 +12,7 @@ body {
 }
 
 .background {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url(img.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url(./img/dev.jpg);
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -76,4 +76,39 @@ button:hover {
     transition: 0.5s;
 }
 
+.container-text {
+    padding: 150px 0 0 130px;
+}
+
+.text h3 {
+    color: white;
+    font-size: 10px;
+}
+
+.text h1 {
+    color: white;
+    font-size: 15px;
+}
+
+.text span {
+    color: #2ecc71;
+}
+
+.text p {
+    color: #fff;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.social-medias i {
+    color: #2ecc71;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+@media screen and (max-width:600px) {
+    .header-link {
+        display: none;
+    }
+}
 
