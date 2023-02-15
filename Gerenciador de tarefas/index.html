@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tarefas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/3fd338ce56.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 p-0">
+
+                    <nav class="navbar bg-dark">
+                        <div class="container-fluid">
+                            <a class="navbar-brand text-white">Sistema de Tarefas</a>
+                            <form class="d-flex" role="search">
+                            
+                                <input class="form-control me-2 btn-login frm-login" 
+                                type="text"
+                                id="name"
+                                placeholder="Usuário" 
+                                aria-label="Usuário">
+
+                                <input class="form-control me-2 btn-login frm-login" 
+                                type="password" 
+                                id="password"
+                                placeholder="Senha" 
+                                aria-label="Senha">
+
+                                <button class="btn btn-outline-info frm-login"
+                                id="btnLogin"
+                                onclick="logar()"
+                                type="button">Entrar</button>
+                                
+                                <span class="text-white pt-2" id="nameUser"></span>                        
+
+                                <button class="btn btn-outline-info d-none border-0 mx-3"
+                                id="btnLogout"
+                                onclick="deslogar()"
+                                type="button">                                                        
+                                <i class="fa fa-arrow-right-from-bracket text-white"></i>
+                                </button>
+                         
+                            </form>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>            
+        </div>
+    </header>
+
+    <section>
+        <div class="container-fluid px-4 mt-4">
+            <div class="row">
+                <div class="col-md-12 text-center d-none-teste p-0" id="new_task">
+                    <nav class="rounded-10 navbar bg-light">
+                        <div class="container-fluid">
+                            <div>
+                                <i class="fa fa-search"></i>
+                            <input class="navbar-brand search"
+                            type="search" placeholder="Pesquisar..." 
+                            aria-label="Pesquisar">
+                            </div>
+                          <form class="d-flex" role="search">                            
+                            <button type="button" 
+                                class="btn btn-primary" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modal_new_task">
+                                <i class= "fa fa-pen-to-square pe-2"></i>
+                                Nova tarefa
+                            </button>
+                          </form>
+                        </div>
+                    </nav>                                      
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <span>
+                            <i class="fa fa-dolly"></i>
+                            Fazer
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <div id="do_card_content"></div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 ">
+                    <div class="text-center">
+                        <span>
+                            <i class="fa-solid fa-person-running"></i>
+                            Fazendo
+                        </span>
+                    </div>
+                    <div class="mt-4">
+                        <div id="doing_card_content">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <span>
+                            <i class="fa-sharp fa-solid fa-check"></i>
+                            Feito
+                        </span>
+                    </div>     
+                    <div class="mt-4">
+                        <div id="done_card_content">
+                        </div>
+                    </div>               
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  <div class="modal fade" id="modal_new_task" 
+    tabindex="-1" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">            
+            <h1 class="modal-title fs-5" 
+                id="exampleModalLabel">
+                <i class="fa fa-plus px-2"></i>
+                Nova tarefa
+            </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container-fluid">
+            <div class="row">
+                
+                <div class="col-md-2 mb-3">
+                    <label for="task_id" class="form-label">&nbsp;</label>
+                    <input type="text" 
+                    disabled 
+                    class="form-control"
+                    id="task_id">
+                </div>
+                
+                <div class="col-md-10 mb-3">
+                    <label for="task_name" 
+                    class="form-label">Nome da tarefa</label>
+                    <input type="text" required class="form-control" 
+                    id="task_name"
+                    placeholder="Estudar">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="task_responsible" class="form-label">
+                        Responsável da tarefa                    
+                    </label>
+                    <input type="text" class="form-control" id="task_responsible"
+                    placeholder="Ex: Eu mesmo">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="task_date" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="task_date">
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label for="task_description" class="form-label">Descrição</label>
+                    <textarea class="form-control" required id="task_description" rows="2"></textarea>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="task_priority" 
+                    class="form-label">Prioridade</label>
+                    <select name="task_priority" id="task_priority" class="form-control">
+                        <option value="#">Selecione...</option>
+                        <option value="1">Baixa</option>
+                        <option value="2">Média</option>
+                        <option value="3">Alta</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="task_status" 
+                    class="form-label">Status</label>
+                    <select name="task_status" id="task_status" class="form-control">
+                        <option value="#">Selecione...</option>
+                        <option value="1">Fazer</option>
+                        <option value="2">Fazendo</option>
+                        <option value="3">Finalizada</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="saveTask()" 
+            class="btn btn-outline-primary">
+                Salvar
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="modal_delete_task" 
+    tabindex="-1" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">            
+            <h1 class="modal-title fs-5" 
+                id="exampleModalLabel">
+                <i class="fa fa-trash px-2"></i>
+                Remover tarefa
+            </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container-fluid">        
+            <h6>Deseja remover a tarefa <b><span id="idTask"></span></b> realmente ?</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="confirmDelete('S')" 
+            class="btn btn-outline-primary">
+                Salvar
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="modal_edit_task" 
+    tabindex="-1" 
+    aria-labelledby="exampleModalLabel" 
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">            
+            <h1 class="modal-title fs-5" 
+                id="exampleModalLabel">
+                <i class="fa fa-edit px-2"></i>
+                Editar tarefa
+            </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container-fluid">        
+            <div class="row">
+                
+                <div class="col-md-2 mb-3">
+                    <label for="task_id_edit" class="form-label">&nbsp;</label>
+                    <input type="text" 
+                    disabled 
+                    class="form-control"
+                    value=""
+                    id="task_id_edit">
+                </div>
+                
+                <div class="col-md-10 mb-3">
+                    <label for="task_name_edit" 
+                    class="form-label">Nome da tarefa</label>
+                    <input type="text" required class="form-control" 
+                    id="task_name_edit"
+                    placeholder="Estudar">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="task_responsible_edit" class="form-label">
+                        Responsável da tarefa                    
+                    </label>
+                    <input type="text" class="form-control" id="task_responsible_edit"
+                    placeholder="Ex: Eu mesmo">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="task_date_edit" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="task_date_edit" value="">
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <label for="task_description_edit" class="form-label">Descrição</label>
+                    <textarea class="form-control" required id="task_description_edit" rows="2"></textarea>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="task_priority_edit" 
+                    class="form-label">Prioridade</label>
+                    <select name="task_priority_edit" id="task_priority_edit" class="form-control">
+                        <option value="#">Selecione...</option>
+                        <option value="1">Baixa</option>
+                        <option value="2">Média</option>
+                        <option value="3">Alta</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="task_status_edit" 
+                    class="form-label">Status</label>
+                    <select name="task_status_edit" id="task_status_edit" class="form-control">
+                        <option value="#">Selecione...</option>
+                        <option value="1">Fazer</option>
+                        <option value="2">Fazendo</option>
+                        <option value="3">Finalizada</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="confirmDelete('S')" 
+            class="btn btn-outline-primary">
+                Salvar
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <script src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>  
+</body>
+</html>

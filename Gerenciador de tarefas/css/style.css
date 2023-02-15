@@ -1,0 +1,43 @@
+body {
+    background-color: #eee !important;
+}
+
+.btn-login {
+    width: 105px !important;
+}
+
+.badge {
+    padding-left: 4px;
+    padding-right: 4px;
+    opacity: 0.7;
+    border-radius: 8px;
+}
+
+.lowPriority {
+    background-color: green;
+}
+
+.mediumPriority {
+    background-color: yellow;
+}
+
+.highPriority {
+    background-color: red;
+}
+
+.text-decoration-none {
+    text-decoration: none !important;
+}
+
+.rounded-10 {
+    border-radius: 10px;
+}
+
+.search {
+    margin-left: 5px;
+    border: none;
+    border-bottom: solid 1px #eee;
+    font-size: 16px;
+    color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity));
+    background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity));
+}
