@@ -6,12 +6,13 @@
 }
 
 body {
-    background-image: linear-gradient(
+    /*background-image: linear-gradient(
         43deg,
         #4158d0 0%,
         #c450c0 46%,
         #ffCC70 100%
-    );
+    );*/
+    background-color: white;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -25,6 +26,19 @@ body {
     border-radius: 50%;
     border: 2px solid black;
     position: relative;
+}
+
+/*Desenhando ponto central dos ponteiros*/
+.clock::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: 49%;
+    left: 49%;
+    z-index: 11;
+    background-color: black;
 }
 
 .clock .number {
@@ -75,4 +89,36 @@ body {
 }
 .clock .number.number-12 {
     --rotation: 360deg;
+}
+
+.clock .hand {
+    --rotation: 0;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    background-color: black;
+    z-index: 10;
+
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+    transform-origin: bottom;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.clock .hand.seconds {
+    width: 3px;
+    height: 40%;
+    background-color: red;
+}
+
+.clock .hand.minutes {
+    width: 7px;
+    height: 35%;
+    background-color: black;
+}
+
+.clock .hand.hours {
+    width: 10px;
+    height: 25%;
+    background-color: black;
 }
