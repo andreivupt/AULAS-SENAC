@@ -16,7 +16,7 @@ function setTaskId() {
 }
 
 function logar() {
-    const usuario = 'Marcus';
+    const usuario = 'Curso';
     const senha = '123';
 
     var name = document.getElementById('name').value;    
@@ -77,7 +77,7 @@ function saveTask() {
     this.formatInputs(taskDate, taskPriority, taskStatus);
 
     var taskCard =
-    " <div class='card mb-4 text-left p-3 border-0'> " +
+    " <div class='card mb-4 text-left p-3 border-0' id='card_"+ taskId +"'> " +
     "   <input class='d-none' id='id_card_"+ taskId +"' value="+ taskId +"> " +
     "   <div class='d-flex align-items-center justify-content-between pb-3'>" +
     "       <div class=''> " +
@@ -200,6 +200,19 @@ function getStatusName(taskStatus) {
             return 'Finalizada';
         default:
             return 'Não definido';
+    }
+}
+
+let deleteTaskId = '';
+function deleteTask(task) {
+    deleteTaskId = task;
+    document.getElementById('idTask').innerHTML = task;
+}
+
+function confirmDelete(result) {
+    console.log(deleteTaskId);
+    if (result === 'S') {
+        document.getElementById('card_' + deleteTaskId).remove();        
     }
 }
 
