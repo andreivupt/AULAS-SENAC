@@ -216,3 +216,32 @@ function confirmDelete(result) {
     }
 }
 
+
+
+/** */
+function editTask(task) {     
+    let idCard          = $("#card_"+ task).val();
+    let taskName        = $('#name_'+ task).val();
+    let taskDescription = $('#description_'+ task).val();
+    let taskDate        = $('#date_'+ task).val();
+    let taskResponsible = $('#responsible_'+ task).val();
+    let taskStatus      = $("#status_"+ task).val();
+    let taskPriority    = $("#priority_"+ task).val();//document.getElementById('priority_'+ task).value;
+    console.log(taskName);
+    console.log(taskDescription);
+    console.log(taskDate);
+    console.log(taskResponsible);
+    //let taskDateY = "2023-08-25";
+
+    const date = taskDate.split("/");
+    console.log(date);
+    let newDate = date[2] + '-' + date[1] + '-' + date[0];
+    document.getElementById('task_id_edit').value               = idCard;
+    document.getElementById('task_name_edit').value             = taskName;
+    document.getElementById('task_responsible_edit').value      = taskResponsible;
+    document.getElementById('task_date_edit').value             = newDate; //'2023-03-01';
+    document.getElementById('task_description_edit').value      = taskDescription;
+    document.getElementById('task_status_edit').selectedIndex   = taskStatus;
+    document.getElementById('task_priority_edit').selectedIndex = taskPriority;
+}
+
